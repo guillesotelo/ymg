@@ -1,0 +1,7 @@
+export const APP_COLORS = {
+    FROST_GREEN: '#2E7D32',
+    WARM_BEIGE: '#F5E1C8',
+    TOMATO_RED: '#D32F2F',
+    MUSTARD_YELLOW: '#FBC02D',
+    DARK_CHARCOAL: '#212121'
+}
