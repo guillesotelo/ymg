@@ -15,9 +15,9 @@ export const metadata: Metadata = {
     openGraph: {
         title: 'YMG',
         description: 'Consultancy & Networking',
-        images: ['/logo_515x515.png'],
         url: 'https://www.ymg.vercel.app',
         type: 'website',
+        images: ['https://www.tastefrance.com/sites/tastefrance.com/files/2021-09/GettyImages-1081422898.jpg'],
     },
     twitter: {
         card: 'summary_large_image',
