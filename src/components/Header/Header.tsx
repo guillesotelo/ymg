@@ -9,58 +9,10 @@ import toast from 'react-hot-toast';
 export default function Header() {
     const [page, setPage] = useState('')
     const [menuOpen, setMenuOpen] = useState(false)
-    const [showCategories, setShowCategories] = useState(false)
     const router = useRouter()
     const pathname = usePathname()
     const { isMobile, isLoggedIn, setIsLoggedIn, darkMode, setDarkMode, lang, setLang } = useContext(AppContext)
-    const [logoAnimation, setLogoAnimation] = useState('YMG')
-
-    useEffect(() => {
-        let intervalId: any = null
-        const YMG = ' YMG'.split('')
-        const the_shortest = 'The Shortest Tech Newsletter.'.split('')
-        let i = 1
-        let j = YMG.length - 1
-        let k = 1
-        let l = the_shortest.length - 1
-
-        const animateLogo = () => {
-            if (j === 11) return setInterval(() => reverse(), 60)
-            if (j === 0 && i < 12) {
-                setLogoAnimation(YMG.slice(0, i).join('') + '.')
-                i++
-            }
-            // else if (l === 28) return setInterval(() => reverseShortest(), 50)
-            // else if (k === 1 && i === 11) return setInterval(() => animateShortest(), 50)
-        }
-
-        const reverse = () => {
-            if (j > 0) {
-                setLogoAnimation(YMG.slice(0, j).join('') + '.')
-                j--
-            }
-        }
-
-        const reverseShortest = () => {
-            if (l > 0) {
-                setLogoAnimation(the_shortest.slice(0, l).join('') + '.')
-                l--
-            }
-        }
-
-        const animateShortest = () => {
-            if (k < 29) {
-                setLogoAnimation(the_shortest.slice(0, k).join('') + '.')
-                k++
-            }
-        }
-
-        setTimeout(() => {
-            intervalId = setInterval(() => animateLogo(), 160)
-        }, 1000)
-
-        return () => clearInterval(intervalId)
-    }, [])
+    const [logoName, setLogoName] = useState('YMG')
 
     useEffect(() => {
         setPage(pathname)
@@ -98,17 +50,7 @@ export default function Header() {
     const renderMobile = () => {
         return <div className="header__container">
             <div className="header__controls" style={{ width: 'fit-content' }}>
-                <img
-                    src={darkMode ? '/assets/icons/day.svg' : '/assets/icons/night.svg'}
-                    onClick={() => {
-                        localStorage.setItem('preferredMode', JSON.stringify(!darkMode))
-                        setDarkMode(!darkMode)
-                        setMenuOpen(false)
-                    }}
-                    alt="Switch Mode"
-                    className='header__darkmode'
-                    draggable={false}
-                />
+
             </div>
             <p
                 className="header__title"
@@ -116,7 +58,7 @@ export default function Header() {
                     router.push('/')
                     setMenuOpen(false)
                 }}
-                style={{ width: 'fit-content' }}>{logoAnimation}</p>
+                style={{ width: 'fit-content' }}>{logoName}</p>
             <div className="header__menu">
                 <Hamburger size={25} toggled={menuOpen} toggle={setMenuOpen} color='#dcdcdc' easing="ease-in" rounded label="Show menu" />
             </div>
@@ -124,96 +66,18 @@ export default function Header() {
                 <div className="header__menu-sidebar-container">
                     <div
                         className="header__menu-sidebar-item"
-                        onClick={() => setShowCategories(!showCategories)}>
-                        <img src='/assets/icons/categories.svg' draggable={false} alt="Categories" className="header__menu-sidebar-item-svg" />
-                        <p className="header__menu-sidebar-item-text">{lang === 'es' ? 'Categorías' : 'Categories'}</p>
-                    </div>
-
-                    {showCategories ?
-
-                        <>{([]).slice(0, 8).map((cat, i) =>
-                            <p key={i} className="header__menu-sidebar-item-category" onClick={() => {
-                                setMenuOpen(false)
-                                goTo(`/search?q=${cat}`)
-                            }}>{cat}</p>)}
-                            <p className="header__menu-sidebar-item-category" onClick={() => {
-                                goTo(`/categories`)
-                                setMenuOpen(false)
-                            }}>{lang === 'es' ? 'Ver todas' : 'See all'}</p>
-                        </>
-                        : <>
-                            <div
-                                className="header__menu-sidebar-item"
-                                onClick={() => {
-                                    goTo('/subscribe')
-                                    setMenuOpen(false)
-                                }}>
-                                <img src='/assets/icons/subscribe.svg' draggable={false} alt="Subscribe" className="header__menu-sidebar-item-svg" />
-                                <p className="header__menu-sidebar-item-text">{lang === 'es' ? 'Suscribirme' : 'Subscribe'}</p>
-                            </div>
-                            <div
-                                className="header__menu-sidebar-item"
-                                onClick={() => {
-                                    goTo('/advertise')
-                                    setMenuOpen(false)
-                                }}>
-                                <img src='/assets/icons/advertise.svg' draggable={false} alt="Advertise" className="header__menu-sidebar-item-svg" />
-                                <p className="header__menu-sidebar-item-text">{lang === 'es' ? 'Publicitar' : 'Advertise'}</p>
-                            </div>
-                            <div
-                                className="header__menu-sidebar-item"
-                                onClick={() => {
-                                    goTo('/archive')
-                                    setMenuOpen(false)
-                                }}>
-                                <img src='/assets/icons/newsletter.svg' draggable={false} alt="Newsletters" className="header__menu-sidebar-item-svg" />
-                                <p className="header__menu-sidebar-item-text">{lang === 'es' ? 'Ediciones' : 'Newsletters'}</p>
-                            </div>
-                        </>}
-                    <div className="header__menu-sidebar-separator"></div>
-                    <Dropdown
-                        label=''
-                        options={['🇺🇸 English', '🇪🇸 Español']}
-                        selected={lang === 'en' ? '🇺🇸 English' : '🇪🇸 Español'}
-                        setSelected={val => {
-                            setLang(val === '🇺🇸 English' ? 'en' : 'es')
+                        onClick={() => {
+                            goTo('/services')
                             setMenuOpen(false)
                         }}
-                        value={lang === 'en' ? '🇺🇸 English' : '🇪🇸 Español'}
-                        bgColor='#114b5f'
-                        color='#dcdcdc'
-                        style={{ width: '70%' }}
-                    />
+                        style={{ marginTop: '1rem' }}>
+                        <img src='/assets/icons/edit.svg' draggable={false} alt="Editor" className="header__menu-sidebar-item-svg" />
+                        <p className="header__menu-sidebar-item-text">Services</p>
+                    </div>
+
+                    <div className="header__menu-sidebar-separator"></div>
                     {isLoggedIn ?
                         <>
-                            <div
-                                className="header__menu-sidebar-item"
-                                onClick={() => {
-                                    goTo('/editor')
-                                    setMenuOpen(false)
-                                }}
-                                style={{ marginTop: '1rem' }}>
-                                <img src='/assets/icons/edit.svg' draggable={false} alt="Editor" className="header__menu-sidebar-item-svg" />
-                                <p className="header__menu-sidebar-item-text">Editor</p>
-                            </div>
-                            <div
-                                className="header__menu-sidebar-item"
-                                onClick={() => {
-                                    goTo('/email-list')
-                                    setMenuOpen(false)
-                                }}>
-                                <img src='/assets/icons/emails.svg' draggable={false} alt="Email List" className="header__menu-sidebar-item-svg" />
-                                <p className="header__menu-sidebar-item-text">Email List</p>
-                            </div>
-                            <div
-                                className="header__menu-sidebar-item"
-                                onClick={() => {
-                                    goTo('/ads-posts')
-                                    setMenuOpen(false)
-                                }}>
-                                <img src='/assets/icons/ads.svg' draggable={false} alt="Ads & Posts" className="header__menu-sidebar-item-svg" />
-                                <p className="header__menu-sidebar-item-text">Ads & Posts</p>
-                            </div>
                             <div className="header__menu-sidebar-item" onClick={logout}>
                                 <img src='/assets/icons/logout.svg' draggable={false} alt="Logout" className="header__menu-sidebar-item-svg" />
                                 <p className="header__menu-sidebar-item-text">Logout</p>
@@ -222,7 +86,8 @@ export default function Header() {
                         : <div className="header__menu-sidebar-item" onClick={() => goTo('/login')}>
                             <img src='/assets/icons/login.svg' draggable={false} alt="Login" className="header__menu-sidebar-item-svg" />
                             <p className="header__menu-sidebar-item-text">Login</p>
-                        </div>}
+                        </div>
+                    }
                 </div>
             </div>
         </div>
@@ -231,37 +96,36 @@ export default function Header() {
     return isMobile ? renderMobile() :
         <div className="header__container">
             <div className="header__main">
-                <p className="header__title" onClick={() => router.push('/')}>{logoAnimation}</p>
+                <p className="header__title" onClick={() => router.push('/')}>{logoName}</p>
                 <div className="header__nav">
-                    <div
-                        className="header__button-dropdown header-hover-underline"
-                    >{lang === 'es' ? 'Categorías' : 'Categories'}
+                    <div className="header__button-dropdown header-hover-underline">Services
                         <div className='header__button-dropdown-box'>
-                            
-                            <p className='header__button-dropdown-item' onClick={() => router.push(`/categories`)}>{lang === 'es' ? '+ Más' : '+ More'}</p>
+                            <p className='header__button-dropdown-item' onClick={() => router.push(`/services/consultancy`)}>Consultancy</p>
+                            <p className='header__button-dropdown-item' onClick={() => router.push(`/services/marketing`)}>Digital Marketing</p>
+                            <p className='header__button-dropdown-item' onClick={() => router.push(`/services/gastronomy`)}>Gastronomy</p>
                         </div>
                     </div>
                     <button
                         className="header__button header-hover-underline"
-                        onClick={() => router.push('/subscribe')}
+                        onClick={() => router.push('/blog')}
                         style={{
-                            borderBottom: page === '/subscribe' ? '2px solid #DCDCDC' : ''
+                            borderBottom: page === '/blog' ? '2px solid #DCDCDC' : ''
                         }}
-                    >{lang === 'es' ? 'Suscribirme' : 'Subscribe'}</button>
+                    >Blog</button>
                     <button
                         className="header__button header-hover-underline"
-                        onClick={() => router.push('/advertise')}
+                        onClick={() => router.push('/projects')}
                         style={{
-                            borderBottom: page === '/advertise' ? '2px solid #DCDCDC' : ''
+                            borderBottom: page === '/projects' ? '2px solid #DCDCDC' : ''
                         }}
-                    >{lang === 'es' ? 'Publicitar' : 'Advertise'}</button>
+                    >Projects</button>
                     <button
                         className="header__button header-hover-underline"
-                        onClick={() => router.push('/archive')}
+                        onClick={() => router.push('/about')}
                         style={{
-                            borderBottom: page === '/archive' ? '2px solid #DCDCDC' : ''
+                            borderBottom: page === '/about' ? '2px solid #DCDCDC' : ''
                         }}
-                    >{lang === 'es' ? 'Ediciones' : 'Newsletters'}</button>
+                    >About</button>
                     {isLoggedIn ?
                         <div
                             className="header__button-dropdown header-hover-underline"
@@ -300,18 +164,8 @@ export default function Header() {
                     selected={lang === 'en' ? '🇺🇸 EN' : '🇪🇸 ES'}
                     setSelected={val => setLang(val === '🇺🇸 EN' ? 'en' : 'es')}
                     value={lang === 'en' ? '🇺🇸 EN' : '🇪🇸 ES'}
-                    bgColor='#114b5f'
+                    bgColor='#283F3B'
                     color='#dcdcdc'
-                />
-                <img
-                    src={darkMode ? '/assets/icons/day.svg' : '/assets/icons/night.svg'}
-                    onClick={() => {
-                        localStorage.setItem('preferredMode', JSON.stringify(!darkMode))
-                        setDarkMode(!darkMode)
-                    }}
-                    alt="Switch Mode"
-                    className='header__darkmode'
-                    draggable={false}
                 />
             </div>
         </div>

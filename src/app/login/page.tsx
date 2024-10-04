@@ -61,7 +61,7 @@ export default function Login({ }: Props) {
                     disabled={!data.email || !data.password || loading}
                     style={{ width: '100%' }}
                     textColor='white'
-                    bgColor='#114b5f'
+                    bgColor='#283F3B'
                 />
             </div>
         </div>

@@ -10,6 +10,8 @@
 @import '../../components/Loader/loader.scss';
 
 @import '../../app/home/home.scss';
+@import '../../app/404/pageNotFound.scss';
+@import '../../app/contact/contact.scss';
 
 .app {
     &__container {
@@ -39,10 +41,9 @@ h4,
 .page {
 
     &__container {
-        max-width: 82rem;
-        margin: 0 auto 4rem auto;
+        margin: 0 auto 0 auto;
         min-height: 90vh;
-        padding: 8vh 2rem;
+        padding: 12vh 0 0 0;
     }
 
     &__img {
@@ -83,7 +84,7 @@ h4,
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #114b5f;
+    background: #283F3B;
     // border-radius: .2rem;
 }
 
@@ -145,7 +146,7 @@ h4,
         &__container {
             width: 100vw;
             margin: 0;
-            padding: 8vh 0;
+            padding: 10vh 0;
         }
 
         &__title {

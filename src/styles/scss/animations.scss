@@ -138,9 +138,22 @@
 @keyframes fade-in-down {
     0% {
         opacity: 0;
-        transform: translateY(-10%);
+        transform: translateY(-30%);
     }
 
+    100% {
+        opacity: 1;
+        transform: translateY(0%);
+    }
+}
+
+
+@keyframes fade-in-up {
+    0% {
+        opacity: 0;
+        transform: translateY(30%);
+    }
+    
     100% {
         opacity: 1;
         transform: translateY(0%);

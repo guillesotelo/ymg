@@ -6,7 +6,7 @@ import Button from "src/components/Button/Button"
 
 export default function PageNotFound() {
   const { lang } = useContext(AppContext)
-  const notFoundHeader = lang === 'es' ? 'Nada que ver aquí...' : 'Nothing to see here...'
+  const notFoundHeader = lang === 'es' ? 'Nada que ver por aquí...' : 'Nothing to see here...'
   const notFoundText = lang === 'es' ? 'La página que buscas no se ha encontrado. Revisa que la URL sea correcta o vuelve al principio.'
     : 'The page you are looking for has not been found. Check the URL is correct or go back home.'
   const buttonText = lang === 'es' ? 'Volver a casa' : "Go back home"
@@ -23,12 +23,12 @@ export default function PageNotFound() {
         <Button
           label={buttonText}
           handleClick={goHome}
-          bgColor="#bb764c"
+          bgColor="#053C5E"
           textColor="white"
           style={{ width: 'fit-content' }}
         />
       </div>
-      <img className="notfound__image" src="/assets/images/not_found.png" alt="404 - Page Not Found" draggable={false} />
+      <img className="notfound__image" src="https://media.istockphoto.com/id/1470461376/vector/freehand-retro-cartoon-burnt-toast.jpg?s=612x612&w=0&k=20&c=MKftTtB1_JJb0rRkJowNAqa-ugHoJEjLIuerxLgaKhY=" alt="404 - Page Not Found" draggable={false} />
     </div>
   )
 }
