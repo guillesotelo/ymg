@@ -23,7 +23,7 @@ export const metadata: Metadata = {
         card: 'summary_large_image',
         title: 'YMG',
         description: 'Consultancy & Networking',
-        images: ['/logo_515x515.png'],
+        images: ['https://www.tastefrance.com/sites/tastefrance.com/files/2021-09/GettyImages-1081422898.jpg'],
     },
 }
 

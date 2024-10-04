@@ -8,9 +8,7 @@ const Home = () => {
     const router = useRouter()
     return (
         <div className="home__container">
-            <div className="home__bg-image" style={{
-                backgroundImage: 'https://www.tastefrance.com/sites/tastefrance.com/files/2021-09/GettyImages-1081422898.jpg'
-            }}>
+            <div className="home__bg-image">
                 <p className="home__bg-title">Where Expertise Meets Flavor</p>
                 <p className="home__bg-subtitle">Driving culinary innovation through strategic consultancy and powerful networks.</p>
                 <Button
