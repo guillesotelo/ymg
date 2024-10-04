@@ -15,15 +15,15 @@ export const metadata: Metadata = {
     openGraph: {
         title: 'YMG',
         description: 'Consultancy & Networking',
+        images: ['/bg_image.jpg'],
         url: 'https://www.ymg.vercel.app',
         type: 'website',
-        images: ['https://www.tastefrance.com/sites/tastefrance.com/files/2021-09/GettyImages-1081422898.jpg'],
     },
     twitter: {
         card: 'summary_large_image',
         title: 'YMG',
         description: 'Consultancy & Networking',
-        images: ['https://www.tastefrance.com/sites/tastefrance.com/files/2021-09/GettyImages-1081422898.jpg'],
+        images: ['/bg_image.jpg'],
     },
 }
 
