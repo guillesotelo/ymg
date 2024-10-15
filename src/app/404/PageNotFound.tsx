@@ -3,17 +3,20 @@
 import { useContext } from "react"
 import { AppContext } from "../context/AppContext"
 import Button from "src/components/Button/Button"
+import { useRouter } from "next/navigation"
 
 export default function PageNotFound() {
   const { lang } = useContext(AppContext)
+  const router = useRouter()
   const notFoundHeader = lang === 'es' ? 'Nada que ver por aquí...' : 'Nothing to see here...'
   const notFoundText = lang === 'es' ? 'La página que buscas no se ha encontrado. Revisa que la URL sea correcta o vuelve al principio.'
     : 'The page you are looking for has not been found. Check the URL is correct or go back home.'
   const buttonText = lang === 'es' ? 'Volver a casa' : "Go back home"
 
   const goHome = () => {
-
+    router.push('/')
   }
+
   return (
     <div className="notfound__container">
       <div className="notfound__col">

@@ -4,5 +4,6 @@ export const APP_COLORS = {
     INDIGO: '#053C5E',
     TEAL: '#1F7A8C',
     CHARCOAL: '#212121',
-    GRAY: '#2F2F2F'
+    GRAY: '#2F2F2F',
+    CLEAR: '#F8F6F4'
 }

@@ -9,10 +9,20 @@ import toast from 'react-hot-toast';
 export default function Header() {
     const [page, setPage] = useState('')
     const [menuOpen, setMenuOpen] = useState(false)
+    const [scroll, setScroll] = useState(false)
     const router = useRouter()
     const pathname = usePathname()
     const { isMobile, isLoggedIn, setIsLoggedIn, darkMode, setDarkMode, lang, setLang } = useContext(AppContext)
     const [logoName, setLogoName] = useState('YMG')
+
+    useEffect(() => {
+        const headerScroll = () => {
+            const html = document.querySelector('html')
+            setScroll(html && html.scrollTop > 70 || false)
+        }
+        document.addEventListener('scroll', headerScroll)
+        return () => document.removeEventListener('scroll', headerScroll)
+    }, [])
 
     useEffect(() => {
         setPage(pathname)
@@ -94,33 +104,26 @@ export default function Header() {
     }
 
     return isMobile ? renderMobile() :
-        <div className="header__container">
+        <div className="header__container" style={{ color: scroll ? 'white' : '#283F3B', background: scroll ? '#00000090' : '' }}>
             <div className="header__main">
                 <p className="header__title" onClick={() => router.push('/')}>{logoName}</p>
                 <div className="header__nav">
-                    <div className="header__button-dropdown header-hover-underline">Services
-                        <div className='header__button-dropdown-box'>
-                            <p className='header__button-dropdown-item' onClick={() => router.push(`/services/consultancy`)}>Consultancy</p>
-                            <p className='header__button-dropdown-item' onClick={() => router.push(`/services/marketing`)}>Digital Marketing</p>
-                            <p className='header__button-dropdown-item' onClick={() => router.push(`/services/gastronomy`)}>Gastronomy</p>
+                    <div className={`header__button-dropdown header-hover-underline${scroll ? '-scroll' : ''}`}>Services
+                        <div className={`header__button-dropdown-box${scroll ? '-scroll' : ''}`}>
+                            <p className={`header__button-dropdown-item${scroll ? '-scroll' : ''}`} onClick={() => router.push(`/services/consultancy`)}>Consultancy</p>
+                            <p className={`header__button-dropdown-item${scroll ? '-scroll' : ''}`} onClick={() => router.push(`/services/marketing`)}>Digital Marketing</p>
+                            <p className={`header__button-dropdown-item${scroll ? '-scroll' : ''}`} onClick={() => router.push(`/services/gastronomy`)}>Gastronomy</p>
                         </div>
                     </div>
                     <button
-                        className="header__button header-hover-underline"
-                        onClick={() => router.push('/blog')}
-                        style={{
-                            borderBottom: page === '/blog' ? '2px solid #DCDCDC' : ''
-                        }}
-                    >Blog</button>
-                    <button
-                        className="header__button header-hover-underline"
+                        className={`header__button header-hover-underline${scroll ? '-scroll' : ''}`}
                         onClick={() => router.push('/projects')}
                         style={{
                             borderBottom: page === '/projects' ? '2px solid #DCDCDC' : ''
                         }}
                     >Projects</button>
                     <button
-                        className="header__button header-hover-underline"
+                        className={`header__button header-hover-underline${scroll ? '-scroll' : ''}`}
                         onClick={() => router.push('/about')}
                         style={{
                             borderBottom: page === '/about' ? '2px solid #DCDCDC' : ''
@@ -132,26 +135,12 @@ export default function Header() {
                         >Administrator
                             <div className='header__button-dropdown-box'>
                                 <button
-                                    className="header__button header-hover-underline"
+                                    className={`header__button header-hover-underline${scroll ? '-scroll' : ''}`}
                                     onClick={() => router.push('/editor')}
                                     style={{
                                         borderBottom: page === '/editor' ? '2px solid #DCDCDC' : ''
                                     }}
                                 >Editor</button>
-                                <button
-                                    className="header__button header-hover-underline"
-                                    onClick={() => router.push('/email-list')}
-                                    style={{
-                                        borderBottom: page === '/email-list' ? '2px solid #DCDCDC' : ''
-                                    }}
-                                >Email List</button>
-                                <button
-                                    className="header__button header-hover-underline"
-                                    onClick={() => router.push('/ads-posts')}
-                                    style={{
-                                        borderBottom: page === '/ads-posts' ? '2px solid #DCDCDC' : ''
-                                    }}
-                                >Ads & Posts</button>
                             </div>
                         </div>
                         : ''}
@@ -164,8 +153,8 @@ export default function Header() {
                     selected={lang === 'en' ? '🇺🇸 EN' : '🇪🇸 ES'}
                     setSelected={val => setLang(val === '🇺🇸 EN' ? 'en' : 'es')}
                     value={lang === 'en' ? '🇺🇸 EN' : '🇪🇸 ES'}
-                    bgColor='#283F3B'
-                    color='#dcdcdc'
+                    bgColor='transparent'
+                    color={scroll ? 'white' : '#283F3B'}
                 />
             </div>
         </div>
