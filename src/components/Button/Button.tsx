@@ -12,10 +12,10 @@ type Props = {
     disabled?: boolean
     svg?: string
     style?: React.CSSProperties
-    reverseBG?: boolean
+    outline?: boolean
 }
 
-export default function Button({ label, handleClick, className, bgColor, textColor, disabled, svg, style, reverseBG }: Props) {
+export default function Button({ label, handleClick, className, bgColor, textColor, disabled, svg, style, outline }: Props) {
     const [buttonStyle, setButtonStyle] = useState<React.CSSProperties>({ ...style })
     const { darkMode } = useContext(AppContext)
 
@@ -33,7 +33,7 @@ export default function Button({ label, handleClick, className, bgColor, textCol
             onClick={handleClick}
             style={{
                 backgroundColor: bgColor || '',
-                border: `1px solid ${reverseBG ? textColor : bgColor || ''}`,
+                border: `1px solid ${outline ? textColor : bgColor || ''}`,
                 color: textColor || 'black',
                 opacity: disabled ? '.3' : '',
                 padding: '.2vw',
@@ -48,8 +48,8 @@ export default function Button({ label, handleClick, className, bgColor, textCol
             }}
             onMouseEnter={() => setButtonStyle({
                 ...style,
-                backgroundColor: reverseBG ? textColor : 'transparent',
-                color: reverseBG ? bgColor : !darkMode ? (isTooBright(bgColor) ? 'black' : bgColor) : ''
+                backgroundColor: outline ? textColor : 'transparent',
+                color: outline ? bgColor : !darkMode ? (isTooBright(bgColor) ? 'black' : bgColor) : ''
             })}
             onMouseLeave={() => setButtonStyle({
                 ...style,
@@ -66,7 +66,7 @@ export default function Button({ label, handleClick, className, bgColor, textCol
             onClick={handleClick}
             style={{
                 backgroundColor: bgColor || '',
-                border: `1px solid ${reverseBG ? textColor : bgColor || ''}`,
+                border: `1px solid ${outline ? textColor : bgColor || ''}`,
                 color: !textColor && darkMode ? 'lightgray' : textColor || 'black',
                 opacity: disabled ? '.3' : '',
                 cursor: disabled ? 'not-allowed' : '',
@@ -75,7 +75,7 @@ export default function Button({ label, handleClick, className, bgColor, textCol
             disabled={disabled}
             onMouseEnter={() => setButtonStyle({
                 ...style,
-                backgroundColor: reverseBG ? textColor : 'transparent',
+                backgroundColor: outline ? textColor : 'transparent',
                 color: bgColor || ''
             })}
             onMouseLeave={() => setButtonStyle({

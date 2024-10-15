@@ -6,7 +6,7 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL
 export async function POST(request: NextRequest) {
     try {
         const data = await request.json()
-        const res = await retryWithDelay(() => axios.post(`${API_URL}/api/app/sendContactEmail`, data), 5, 100)
+        const res = await retryWithDelay(() => axios.post(`https://bydanygarcia-api.vercel.app/api/app/sendCustomContactEmail`, data), 5, 100)
         return NextResponse.json(res.data)
     } catch (err: any) {
         console.error("Next API Error: ", err)
