@@ -184,7 +184,7 @@ const Home = () => {
                     <div className="home__service">
                         <img src="https://columnfivemedia.com/wp-content/uploads/2021/03/how-to-create-a-brand-identity-cove.png" alt="Brand Identity & Strategy" className="home__service-img" draggable={false} />
                         <p className="home__service-title">Brand Identity & Strategy</p>
-                        <p className="home_router.push('/about')_service-overlay">Craft a unique brand identity that stands out in the culinary world. From logo design to positioning, we'll build a strategy that aligns with your vision.</p>
+                        <p className="home__service-overlay">Craft a unique brand identity that stands out in the culinary world. From logo design to positioning, we'll build a strategy that aligns with your vision.</p>
                     </div>
                     <div className="home__service">
                         <img src="https://www.adobe.com/express/learn/blog/media_114b76a23afe9ee97a6d31503ae2ce6edf0140dd2.jpeg?width=1200&format=pjpg&optimize=medium" alt="Social Media Management" className="home__service-img" draggable={false} />
