@@ -44,6 +44,7 @@ const Home = () => {
 
     const sendMessage = async () => {
         try {
+            if (checkContactData()) return
             setLoading(true)
             const emailData = {
                 from: 'YMG Consultancy',
@@ -58,6 +59,17 @@ const Home = () => {
         } catch (error) {
             setLoading(false)
             console.error(error)
+        }
+    }
+
+    const checkContactData = () => {
+        const errors: string[] = []
+        if (!data.message) errors.push('Please add a message')
+        if (!data.email) errors.push('Please add your email')
+        if (data.email && (!data.email.includes('.') || !data.email.includes('@'))) errors.push('Invalid email')
+        if (errors.length) {
+            errors.map(e => toast.error(e))
+            return true
         }
     }
 
