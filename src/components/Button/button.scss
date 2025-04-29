@@ -4,13 +4,15 @@
         // font-weight: bold;
         background-color: #283F3B;
         width: fit-content;
-        padding: .6rem .5rem;
+        padding: .8rem 1.5rem;
         border-radius: .3rem;
         cursor: pointer;
         transition: .2s;
         border: none;
         border: 1px solid transparent;
         width: 100%;
+        letter-spacing: 3px;
+        font-size: .9rem !important;
 
         &:hover {
             filter: brightness(110%);

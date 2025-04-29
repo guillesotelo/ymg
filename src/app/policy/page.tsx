@@ -22,7 +22,7 @@ export default function Policy({ }: Props) {
                     <p className='page__text'><strong>Affiliate</strong> means an entity that controls, is controlled by or is under common control with a party, where &quot;control&quot; means ownership of 50% or more of the shares, equity interest or other securities entitled to vote for election of directors or other managing authority.</p>
                 </li>
                 <li>
-                    <p className='page__text'><strong>Application (The App)</strong> refers to any application developed by YMG Consultancy and contributors, the software program provided by the Company.</p>
+                    <p className='page__text'><strong>Application (The App)</strong> refers to any application developed by Culinaire Studio and contributors, the software program provided by the Company.</p>
                 </li>
                 <li>
                     <p className='page__text'><strong>Company</strong> (referred to as either &quot;the Company&quot;, &quot;We&quot;, &quot;Us&quot; or &quot;Our&quot; in this Agreement) refers to The App.</p>
@@ -145,7 +145,7 @@ export default function Policy({ }: Props) {
             <h2 className='page__subtitle'>Contact Us</h2>
             <p className='page__text'>If you have any questions about this Privacy Policy, You can contact us:</p>
             <ul>
-                <li>By email: <a className='page__text' href='mailto:hello@ymgconsultancy.com'>hello@ymgconsultancy.com</a></li>
+                <li>By email: <a className='page__text' href='mailto:hello@culinairestudio.com'>hello@culinairestudio.com</a></li>
             </ul>
         </div>
     )

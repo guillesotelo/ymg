@@ -5,17 +5,15 @@ import Hamburger from 'hamburger-react'
 import Dropdown from '../Dropdown/Dropdown'
 import { loginUser, logOut } from 'src/services';
 import toast from 'react-hot-toast';
-import Button from '../Button/Button';
-import { APP_COLORS } from 'src/constants';
 
 export default function Header() {
-    const [page, setPage] = useState('/')
+    const [page, setPage] = useState('')
     const [menuOpen, setMenuOpen] = useState(false)
     const [scroll, setScroll] = useState(false)
     const router = useRouter()
     const pathname = usePathname()
     const { isMobile, isLoggedIn, setIsLoggedIn, darkMode, setDarkMode, lang, setLang } = useContext(AppContext)
-    const [logoName, setLogoName] = useState('Culinaire Studio')
+    const [logoName, setLogoName] = useState('YMG')
 
     useEffect(() => {
         const headerScroll = () => {
@@ -64,14 +62,13 @@ export default function Header() {
             <div className="header__controls" style={{ width: 'fit-content' }}>
 
             </div>
-            <img
-                src='/assets/images/logo.png'
-                className="header__logo"
+            <p
+                className="header__title"
                 onClick={() => {
                     router.push('/')
                     setMenuOpen(false)
                 }}
-            />
+                style={{ width: 'fit-content' }}>{logoName}</p>
             <div className="header__menu">
                 <Hamburger size={25} toggled={menuOpen} toggle={setMenuOpen} color='#dcdcdc' easing="ease-in" rounded label="Show menu" />
             </div>
@@ -109,53 +106,29 @@ export default function Header() {
     return isMobile ? renderMobile() :
         <div className="header__container" style={{ color: scroll ? 'white' : '#283F3B', background: scroll ? '#00000090' : '' }}>
             <div className="header__main">
-                <img
-                    src='/assets/images/logo.png'
-                    className="header__logo" onClick={() => router.push('/')}
-                />
+                <p className="header__title" onClick={() => router.push('/')}>{logoName}</p>
                 <div className="header__nav">
-                    <button
-                        className={`header__button header-hover-underline${scroll ? '-scroll' : ''}`}
-                        onClick={() => router.push('/')}
-                        style={{
-                            borderBottom: page === '/' ? '2px solid #283F3B' : '2px solid transparent'
-                        }}
-                    >HOME</button>
-                    <button
-                        className={`header__button header-hover-underline${scroll ? '-scroll' : ''}`}
-                        onClick={() => router.push('/about')}
-                        style={{
-                            borderBottom: page === '/about' ? '2px solid #283F3B' : '2px solid transparent'
-                        }}
-                    >ABOUT</button>
-                    <button
-                        className={`header__button header-hover-underline${scroll ? '-scroll' : ''}`}
-                        onClick={() => router.push('/recipes')}
-                        style={{
-                            borderBottom: page === '/recipes' ? '2px solid #283F3B' : '2px solid transparent'
-                        }}
-                    >RECIPES</button>
-                    <div className={`header__button-dropdown header-hover-underline${scroll ? '-scroll' : ''}`}>SERVICES
+                    <div className={`header__button-dropdown header-hover-underline${scroll ? '-scroll' : ''}`}>Services
                         <div className={`header__button-dropdown-box${scroll ? '-scroll' : ''}`}>
-                            <p className={`header__button-dropdown-item${scroll ? '-scroll' : ''}`} onClick={() => router.push(`/services/consultancy`)}>CONSULTANCY</p>
-                            <p className={`header__button-dropdown-item${scroll ? '-scroll' : ''}`} onClick={() => router.push(`/services/events`)}>EVENTS</p>
-                            <p className={`header__button-dropdown-item${scroll ? '-scroll' : ''}`} onClick={() => router.push(`/services/gastronomy`)}>GASTRONOMY</p>
+                            <p className={`header__button-dropdown-item${scroll ? '-scroll' : ''}`} onClick={() => router.push(`/services/consultancy`)}>Consultancy</p>
+                            <p className={`header__button-dropdown-item${scroll ? '-scroll' : ''}`} onClick={() => router.push(`/services/marketing`)}>Digital Marketing</p>
+                            <p className={`header__button-dropdown-item${scroll ? '-scroll' : ''}`} onClick={() => router.push(`/services/gastronomy`)}>Gastronomy</p>
                         </div>
                     </div>
                     <button
                         className={`header__button header-hover-underline${scroll ? '-scroll' : ''}`}
-                        onClick={() => router.push('/blog')}
+                        onClick={() => router.push('/projects')}
                         style={{
-                            borderBottom: page === '/blog' ? '2px solid #283F3B' : '2px solid transparent'
+                            borderBottom: page === '/projects' ? '2px solid #DCDCDC' : ''
                         }}
-                    >BLOG</button>
+                    >Projects</button>
                     <button
                         className={`header__button header-hover-underline${scroll ? '-scroll' : ''}`}
-                        onClick={() => router.push('/contact')}
+                        onClick={() => router.push('/about')}
                         style={{
-                            borderBottom: page === '/contact' ? '2px solid #283F3B' : '2px solid transparent'
+                            borderBottom: page === '/about' ? '2px solid #DCDCDC' : ''
                         }}
-                    >CONTACT</button>
+                    >About</button>
                     {isLoggedIn ?
                         <div
                             className="header__button-dropdown header-hover-underline"
@@ -165,7 +138,7 @@ export default function Header() {
                                     className={`header__button header-hover-underline${scroll ? '-scroll' : ''}`}
                                     onClick={() => router.push('/editor')}
                                     style={{
-                                        borderBottom: page === '/editor' ? '2px solid #283F3B' : '2px solid transparent'
+                                        borderBottom: page === '/editor' ? '2px solid #DCDCDC' : ''
                                     }}
                                 >Editor</button>
                             </div>
@@ -174,7 +147,7 @@ export default function Header() {
                 </div>
             </div>
             <div className="header__controls">
-                {/* <Dropdown
+                <Dropdown
                     label=''
                     options={['🇺🇸 EN', '🇪🇸 ES']}
                     selected={lang === 'en' ? '🇺🇸 EN' : '🇪🇸 ES'}
@@ -182,12 +155,6 @@ export default function Header() {
                     value={lang === 'en' ? '🇺🇸 EN' : '🇪🇸 ES'}
                     bgColor='transparent'
                     color={scroll ? 'white' : '#283F3B'}
-                /> */}
-                <Button
-                    label="WORK WITH US"
-                    handleClick={() => router.push('/')}
-                    bgColor={APP_COLORS.TK_ORANGE}
-                    textColor='#fff'
                 />
             </div>
         </div>

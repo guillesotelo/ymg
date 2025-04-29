@@ -15,14 +15,14 @@ export default function Contact({ }: Props) {
             <h1 className='page__title'>Contact Us</h1>
             <p className='page__text'>We'd love to hear from you! Whether you have a question, feedback, or want to connect with us, feel free to reach out. Your input helps us improve and deliver the best service to you.</p>
 
-            <p className='page__text'>General inquiries: <a href='mailto:hello@ymgconsultancy.com'>hello@ymgconsultancy.com</a></p>
+            <p className='page__text'>General inquiries: <a href='mailto:hello@culinairestudio.com'>hello@culinairestudio.com</a></p>
 
             <h2 className='page__subtitle'>Find us on Social</h2>
             <div className="contact__social">
                 {/* <a target='_blank' href='https://www.linkedin.com/in/guillermosotelo'>
                     <img src='assets/icons/linkedin.svg' alt="Linkedin" className="contact__social-svg" style={{ filter: darkModeFilter }} />
                 </a> */}
-                <a target='_blank' href='https://www.instagram.com/ymgconsultancy'>
+                <a target='_blank' href='https://www.instagram.com/culinairestudio'>
                     <img src='assets/icons/instagram.svg' alt="Instagram" className="contact__social-svg" style={{ filter: darkModeFilter }} />
                 </a>
             </div>

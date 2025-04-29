@@ -7,7 +7,10 @@ export const APP_COLORS = {
     TEAL: '#1F7A8C',
     CHARCOAL: '#212121',
     GRAY: '#2F2F2F',
-    CLEAR: '#F8F6F4'
+    CLEAR: '#F8F6F4',
+
+    TK_ORANGE: "#d4967d",
+    TK_BEIGE: "#E5E3DC",
 }
 
 export const contactEmailTemplate = (data: dataObj) => {
@@ -107,7 +110,7 @@ export const contactEmailTemplate = (data: dataObj) => {
                             </tr>
                             <tr>
                                 <td class="footer" colspan="2">
-                                    <p>&copy; 2024 YMG Consultancy</p>
+                                    <p>&copy; 2024 Culinaire Studio</p>
                                 </td>
                             </tr>
                         </table>
