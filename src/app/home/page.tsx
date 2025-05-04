@@ -7,7 +7,7 @@ import Button from "src/components/Button/Button";
 import InputField from "src/components/InputField/InputField";
 import Modal from "src/components/Modal/Modal";
 import { sendContactEmail } from "src/services";
-import { contactEmailTemplate } from "src/constants"
+import { APP_COLORS, contactEmailTemplate } from "src/constants"
 
 const galery = [
     '/assets/images/galery1.jpg',
@@ -40,12 +40,10 @@ const Home = () => {
     useEffect(() => {
         const parallaxScroll = () => {
             const parallaxImages = document.querySelectorAll('.home__parallax-image') as any
-            parallaxImages.forEach((image: any) => {
+            parallaxImages.forEach((image: any, index: number) => {
                 const speed = parseFloat(image.dataset.speed) || 0.4
-                const offset = window.scrollY - image.parentElement.offsetTop
-                if (offset >= 0 && offset <= image.parentElement.offsetHeight) {
-                    image.style.transform = `translateY(${offset * speed}px)`
-                }
+                const offset = window.scrollY - image.parentElement.offsetTop - (index * index * 1000)
+                image.style.transform = `translateY(${offset * speed}px)`
             })
         }
 
@@ -95,65 +93,69 @@ const Home = () => {
         setSentMessage(false)
     }
 
+    const renderContactModal = () => {
+        return (
+            <Modal
+                title={sentMessage ? 'Thank you! ✨' : 'Get in touch with us'}
+                onClose={closeModal}>
+                {!sentMessage ?
+                    <div className="home__contact-modal">
+                        < InputField
+                            label="Your name"
+                            name="name"
+                            value={data.name}
+                            updateData={updateData}
+                        />
+                        <InputField
+                            label="Your email"
+                            name="email"
+                            value={data.email}
+                            updateData={updateData}
+                        />
+                        <InputField
+                            label="Your message"
+                            name="message"
+                            value={data.message}
+                            updateData={updateData}
+                            type="textarea"
+                            rows={5}
+                        />
+                        <Button
+                            label='SEND'
+                            handleClick={sendMessage}
+                            bgColor="#053C5E"
+                            textColor="white"
+                            style={{
+                                marginTop: '1rem'
+                            }}
+                            disabled={loading}
+                        />
+                    </div>
+                    :
+                    <p>Your message has been sent and we are going to answer you as soon as we can. Stay tunned!</p>
+                }
+            </Modal >
+        )
+    }
+
     return (
         <div className="home__container">
-            {contactModal ?
-                <Modal
-                    title={sentMessage ? 'Thank you! ✨' : 'Get in touch with us'}
-                    onClose={closeModal}>
-                    {!sentMessage ?
-                        <div className="home__contact-modal">
-                            < InputField
-                                label="Your name"
-                                name="name"
-                                value={data.name}
-                                updateData={updateData}
-                            />
-                            <InputField
-                                label="Your email"
-                                name="email"
-                                value={data.email}
-                                updateData={updateData}
-                            />
-                            <InputField
-                                label="Your message"
-                                name="message"
-                                value={data.message}
-                                updateData={updateData}
-                                type="textarea"
-                                rows={5}
-                            />
-                            <Button
-                                label='SEND'
-                                handleClick={sendMessage}
-                                bgColor="#053C5E"
-                                textColor="white"
-                                style={{
-                                    marginTop: '1rem'
-                                }}
-                                disabled={loading}
-                            />
-                        </div>
-                        :
-                        <p>Your message has been sent and we are going to answer you as soon as we can. Stay tunned!</p>
-                    }
-                </Modal >
-                : ''}
+            {contactModal && renderContactModal()}
             {/* <div className="home__bg home__parallax" style={{ filter: contactModal ? 'brightness(.5)' : '' }} /> */}
             <div className="home__parallax-container">
-                <div className="home__parallax-image" data-speed="0.5" />
+                <img src="https://images.squarespace-cdn.com/content/v1/5b85f3ecb10598d2bca44d0c/1575504697821-T2ME0B0NC8JH3RU0OO59/ORJ01462.jpg?format=2500w" className="home__parallax-image" data-speed="0.5" />
             </div>
-            <section className="home__section-small" style={{ filter: contactModal ? 'brightness(.5)' : '', backgroundColor: '#fff' }}>
+            <section className="home__section-small" style={{ filter: contactModal ? 'brightness(.5)' : '', backgroundColor: '#F6F6F3' }}>
                 <div className="home__row">
-                    <div className="home__col">
+                    <div className="home__col" style={{ width: '75vw' }}>
                         <h2 className="home__section-title">Expert Food Styling, Recipe Development & Food Consulting Services</h2>
                         <p className="home__section-text">At Culinaire Studio, we specialize in expert food styling, recipe development, and food consulting to help food brands, restaurants, and media create visually stunning images and delicious recipes. Whether you need a professional food stylist for a cookbook, tested recipes for a new product launch, or restaurant consulting to refine your menu, our expertise ensures your culinary vision comes to life.</p>
                         <p className="home__section-text">From food photography styling to menu development and operational strategy, we partner with chefs, restaurateurs, and food brands to deliver compelling, high-quality culinary content that engages your audience and elevates your brand.</p>
                         <Button
                             label={`CONTACT`}
                             handleClick={() => router.push('/contact')}
-                            bgColor="#053C5E"
-                            textColor="#FFF"
+                            bgColor={APP_COLORS.TK_ORANGE}
+                            textColor='#fff'
                             style={{
                                 width: 'fit-content',
                                 marginTop: '2rem',
@@ -161,6 +163,99 @@ const Home = () => {
                     </div>
                 </div>
             </section>
+
+            <section className="home__section" style={{ filter: contactModal ? 'brightness(.5)' : '', backgroundColor: '#F6F6F3', color: '#283F3B' }}>
+                <h2 className="home__section-title">Our Services</h2>
+                <div className="home__servicecard-list">
+                    <div className="home__servicecard-container">
+                        <div className="home__servicecard-image-wrapper">
+                            <img src="https://images.squarespace-cdn.com/content/v1/5b85f3ecb10598d2bca44d0c/1537466071726-NYXF84Z4SB5MQJK2IXDQ/JPEG+image-200FC4901527-7.jpeg" alt="" className="home__servicecard-image" />
+                        </div>
+                        <p className="home__servicecard-title">Food + Prop Styling</p>
+                        <p className="home__servicecard-content">Elevate your food photography with expert food styling and prop styling services. Whether it's for magazines, advertising, or digital content, I ensure your food looks as good as it tastes.</p>
+                        <Button
+                            label='FOOD STYLING'
+                            handleClick={() => router.push('/')}
+                            bgColor='#F6F6F3'
+                            textColor={APP_COLORS.TK_ORANGE}
+                            outline
+                            style={{
+                                width: 'fit-content',
+                                margin: '.5rem auto 0 auto'
+                            }}
+                        />
+                    </div>
+                    <div className="home__servicecard-container">
+                        <div className="home__servicecard-image-wrapper">
+                            <img src="https://images.squarespace-cdn.com/content/v1/5b85f3ecb10598d2bca44d0c/1537466223757-E8T6WO0H7FDBFV1O8QLB/JPEG+image-200FC4901527-10.jpeg" alt="" className="home__servicecard-image" />
+                        </div>
+                        <p className="home__servicecard-title">Professional Recipe Development & Testing</p>
+                        <p className="home__servicecard-content">Custom recipe development and testing tailored to your brand's unique voice. From cookbooks to marketing campaigns, every recipe is rigorously tested for flavor, accessibility, and engagement.</p>
+                        <Button
+                            label='RECIPE DEVELOPMENT'
+                            handleClick={() => router.push('/')}
+                            bgColor='#F6F6F3'
+                            textColor={APP_COLORS.TK_ORANGE}
+                            outline
+                            style={{
+                                width: 'fit-content',
+                                margin: '.5rem auto 0 auto'
+                            }}
+                        />
+                    </div>
+                    <div className="home__servicecard-container">
+                        <div className="home__servicecard-image-wrapper">
+                            <img src="https://images.squarespace-cdn.com/content/v1/5b85f3ecb10598d2bca44d0c/1730991913312-Z131QGNP4V68KOA6MH4I/smithey_1.2_1850.jpg" alt="" className="home__servicecard-image" />
+                        </div>
+                        <p className="home__servicecard-title">Restaurant and Food Consultant</p>
+                        <p className="home__servicecard-content">From restaurant menu development to culinary consulting, we help streamline operations and create unforgettable dining experiences.</p>
+                        <Button
+                            label='RESTAURANT CONSULTING'
+                            handleClick={() => router.push('/')}
+                            bgColor='#F6F6F3'
+                            textColor={APP_COLORS.TK_ORANGE}
+                            outline
+                            style={{
+                                width: 'fit-content',
+                                margin: '.5rem auto 0 auto'
+                            }}
+                        />
+                    </div>
+                </div>
+            </section>
+
+            <section className="home__section-small" style={{ filter: contactModal ? 'brightness(.5)' : '', backgroundColor: '#e5e3dc' }}>
+                <div className="home__row" style={{ width: '85vw' }}>
+                    <div className="home__col" style={{ justifyContent: 'flex-start', alignItems: 'flex-start' }}>
+                        <h1 className="home__section-why-title">Why Work With Culinaire Studio?</h1>
+                    </div>
+                    <div className="home__col" style={{ alignItems: 'flex-start' }}>
+                        <p className="home__section-why">
+                            ✔ Collaborated with James Beard award-winning chefs - Bringing top-tier culinary expertise to every project.
+                        </p>
+                        <p className="home__section-why">
+                            ✔ Trained at Le Cordon Bleu + MBA in Hospitality - A unique blend of culinary artistry and business strategy.
+                        </p>
+                        <p className="home__section-why">
+                            ✔ Full-service approach - Seamlessly integrating food styling, recipe development, props, and consulting to bring your vision to life.
+                        </p>
+                        <p className="home__section-why" style={{ borderBottom: '1px solid', paddingBottom: '1rem' }}>
+                            ✔ Featured in top-tier publications - Trusted by leading food brands, restaurants, and media.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <div className="home__parallax-container" style={{ height: '70vh' }} >
+                <img src="https://images.squarespace-cdn.com/content/v1/5b85f3ecb10598d2bca44d0c/1537636204047-CPANMXGI8UWQ39FG8S8T/JPEG+image-200FC4901527-14.jpeg?format=2500w" className="home__parallax-image" data-speed="0.2" />
+                <div className="home__parallax-overlap">
+                    <p className="home__parallax-overlap-caption" style={{ fontSize: '1.5rem' }}>Our Mission</p>
+                    <p className="home__parallax-overlap-caption">
+                        We believe in authentic ideas, a dependable voice, and professional execution.
+                    </p>
+                </div>
+            </div>
+
             <section className="home__section" style={{ filter: contactModal ? 'brightness(.5)' : '', backgroundColor: '#F8F6F4', color: '#283F3B' }}>
                 <div className="home__services">
                     <div className="home__service">

@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { AppContext } from '../../app/context/AppContext'
 import { isTooBright } from '../../helpers'
-import Image from 'next/image'
 
 type Props = {
     label?: string
@@ -18,14 +17,6 @@ type Props = {
 export default function Button({ label, handleClick, className, bgColor, textColor, disabled, svg, style, outline }: Props) {
     const [buttonStyle, setButtonStyle] = useState<React.CSSProperties>({ ...style })
     const { darkMode } = useContext(AppContext)
-
-    useEffect(() => {
-        setButtonStyle({
-            ...buttonStyle,
-            backgroundColor: bgColor || '',
-            color: textColor || 'black',
-        })
-    }, [darkMode])
 
     return svg ?
         <div
@@ -67,7 +58,7 @@ export default function Button({ label, handleClick, className, bgColor, textCol
             style={{
                 backgroundColor: bgColor || '',
                 border: `1px solid ${outline ? textColor : bgColor || ''}`,
-                color: !textColor && darkMode ? 'lightgray' : textColor || 'black',
+                color: !textColor && darkMode ? 'lightgray' : textColor,
                 opacity: disabled ? '.3' : '',
                 cursor: disabled ? 'not-allowed' : '',
                 ...buttonStyle
@@ -75,8 +66,8 @@ export default function Button({ label, handleClick, className, bgColor, textCol
             disabled={disabled}
             onMouseEnter={() => setButtonStyle({
                 ...style,
+                color: outline || !darkMode ? bgColor : '',
                 backgroundColor: outline ? textColor : 'transparent',
-                color: bgColor || ''
             })}
             onMouseLeave={() => setButtonStyle({
                 ...style,

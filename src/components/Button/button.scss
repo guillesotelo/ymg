@@ -1,6 +1,5 @@
 .button {
     &__default {
-        font-size: 1rem !important;
         // font-weight: bold;
         background-color: #283F3B;
         width: fit-content;
@@ -12,7 +11,7 @@
         border: 1px solid transparent;
         width: 100%;
         letter-spacing: 3px;
-        font-size: .9rem !important;
+        font-size: .8rem !important;
 
         &:hover {
             filter: brightness(110%);

@@ -107,32 +107,42 @@ export default function Header() {
     }
 
     return isMobile ? renderMobile() :
-        <div className="header__container" style={{ color: scroll ? 'white' : '#283F3B', background: scroll ? '#00000090' : '' }}>
+        <div
+            className="header__container"
+            style={{
+                color: scroll ? '#fff' : '#283F3B',
+                background: scroll ? '#00000090' : '',
+                height: scroll ? '10vh' : ''
+            }}>
+            <img
+                src='/assets/images/logo.png'
+                className="header__logo" onClick={() => router.push('/')}
+                style={{
+                    filter: scroll ? 'brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(7500%) hue-rotate(125deg) brightness(100%) contrast(107%' : '',
+                    height: scroll ? '6vh' : ''
+                }}
+            />
             <div className="header__main">
-                <img
-                    src='/assets/images/logo.png'
-                    className="header__logo" onClick={() => router.push('/')}
-                />
                 <div className="header__nav">
                     <button
                         className={`header__button header-hover-underline${scroll ? '-scroll' : ''}`}
                         onClick={() => router.push('/')}
                         style={{
-                            borderBottom: page === '/' ? '2px solid #283F3B' : '2px solid transparent'
+                            borderBottom: page === '/' ? scroll ? '2px solid #fff' : '2px solid #283F3B' : '2px solid transparent'
                         }}
                     >HOME</button>
                     <button
                         className={`header__button header-hover-underline${scroll ? '-scroll' : ''}`}
                         onClick={() => router.push('/about')}
                         style={{
-                            borderBottom: page === '/about' ? '2px solid #283F3B' : '2px solid transparent'
+                            borderBottom: page === '/about' ? scroll ? '2px solid #fff' : '2px solid #283F3B' : '2px solid transparent'
                         }}
                     >ABOUT</button>
                     <button
                         className={`header__button header-hover-underline${scroll ? '-scroll' : ''}`}
                         onClick={() => router.push('/recipes')}
                         style={{
-                            borderBottom: page === '/recipes' ? '2px solid #283F3B' : '2px solid transparent'
+                            borderBottom: page === '/recipes' ? scroll ? '2px solid #fff' : '2px solid #283F3B' : '2px solid transparent'
                         }}
                     >RECIPES</button>
                     <div className={`header__button-dropdown header-hover-underline${scroll ? '-scroll' : ''}`}>SERVICES
@@ -146,14 +156,14 @@ export default function Header() {
                         className={`header__button header-hover-underline${scroll ? '-scroll' : ''}`}
                         onClick={() => router.push('/blog')}
                         style={{
-                            borderBottom: page === '/blog' ? '2px solid #283F3B' : '2px solid transparent'
+                            borderBottom: page === '/blog' ? scroll ? '2px solid #fff' : '2px solid #283F3B' : '2px solid transparent'
                         }}
                     >BLOG</button>
                     <button
                         className={`header__button header-hover-underline${scroll ? '-scroll' : ''}`}
                         onClick={() => router.push('/contact')}
                         style={{
-                            borderBottom: page === '/contact' ? '2px solid #283F3B' : '2px solid transparent'
+                            borderBottom: page === '/contact' ? scroll ? '2px solid #fff' : '2px solid #283F3B' : '2px solid transparent'
                         }}
                     >CONTACT</button>
                     {isLoggedIn ?
@@ -165,30 +175,30 @@ export default function Header() {
                                     className={`header__button header-hover-underline${scroll ? '-scroll' : ''}`}
                                     onClick={() => router.push('/editor')}
                                     style={{
-                                        borderBottom: page === '/editor' ? '2px solid #283F3B' : '2px solid transparent'
+                                        borderBottom: page === '/editor' ? scroll ? '2px solid #fff' : '2px solid #283F3B' : '2px solid transparent'
                                     }}
                                 >Editor</button>
                             </div>
                         </div>
                         : ''}
                 </div>
-            </div>
-            <div className="header__controls">
-                {/* <Dropdown
+                <div className="header__controls">
+                    {/* <Dropdown
                     label=''
                     options={['🇺🇸 EN', '🇪🇸 ES']}
                     selected={lang === 'en' ? '🇺🇸 EN' : '🇪🇸 ES'}
                     setSelected={val => setLang(val === '🇺🇸 EN' ? 'en' : 'es')}
                     value={lang === 'en' ? '🇺🇸 EN' : '🇪🇸 ES'}
                     bgColor='transparent'
-                    color={scroll ? 'white' : '#283F3B'}
+                    color={scroll ? 'white' : '#fff'}
                 /> */}
-                <Button
-                    label="WORK WITH US"
-                    handleClick={() => router.push('/')}
-                    bgColor={APP_COLORS.TK_ORANGE}
-                    textColor='#fff'
-                />
+                    <Button
+                        label="WORK WITH US"
+                        handleClick={() => router.push('/')}
+                        bgColor={APP_COLORS.TK_ORANGE}
+                        textColor='#fff'
+                    />
+                </div>
             </div>
         </div>
 }
