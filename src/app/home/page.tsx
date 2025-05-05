@@ -249,90 +249,112 @@ const Home = () => {
             <div className="home__parallax-container" style={{ height: '70vh' }} >
                 <img src="https://images.squarespace-cdn.com/content/v1/5b85f3ecb10598d2bca44d0c/1537636204047-CPANMXGI8UWQ39FG8S8T/JPEG+image-200FC4901527-14.jpeg?format=2500w" className="home__parallax-image" data-speed="0.2" />
                 <div className="home__parallax-overlap">
-                    <p className="home__parallax-overlap-caption" style={{ fontSize: '1.5rem' }}>Our Mission</p>
+                    <p className="home__parallax-overlap-caption" style={{ fontSize: '2rem' }}>our mission</p>
                     <p className="home__parallax-overlap-caption">
                         We believe in authentic ideas, a dependable voice, and professional execution.
                     </p>
                 </div>
             </div>
 
-            <section className="home__section" style={{ filter: contactModal ? 'brightness(.5)' : '', backgroundColor: '#F8F6F4', color: '#283F3B' }}>
-                <div className="home__services">
-                    <div className="home__service">
-                        <img src="https://columnfivemedia.com/wp-content/uploads/2021/03/how-to-create-a-brand-identity-cove.png" alt="Brand Identity & Strategy" className="home__service-img" draggable={false} />
-                        <p className="home__service-title">Brand Identity & Strategy</p>
-                        <p className="home__service-overlay">Craft a unique brand identity that stands out in the culinary world. From logo design to positioning, we'll build a strategy that aligns with your vision.</p>
-                    </div>
-                    <div className="home__service">
-                        <img src="https://www.adobe.com/express/learn/blog/media_114b76a23afe9ee97a6d31503ae2ce6edf0140dd2.jpeg?width=1200&format=pjpg&optimize=medium" alt="Social Media Management" className="home__service-img" draggable={false} />
-                        <p className="home__service-title">Social Media Management</p>
-                        <p className="home__service-overlay">Elevate your social presence with tailored content, targeted campaigns, and ongoing engagement to attract and retain food lovers.</p>
-                    </div>
-                    <div className="home__service">
-                        <img src="https://media.istockphoto.com/id/1166773806/vector/set-of-vintage-chef-and-cook-hats.jpg?s=612x612&w=0&k=20&c=8lXuBEgRUv3dgPO3bj6dRSXoEBNZ76IVmtJCJQnx0Yc=" alt="Culinary Concept Development" className="home__service-img" draggable={false} />
-                        <p className="home__service-title">Culinary Concept Development</p>
-                        <p className="home__service-overlay">Bring fresh, innovative ideas to your menu and restaurant concept, tailored to the latest industry trends and customer preferences.</p>
+            <section className="home__section-small" style={{ filter: contactModal ? 'brightness(.5)' : '', backgroundColor: '#F6F6F3' }}>
+                <div className="home__col" style={{ width: '60vw' }}>
+                    <h2 className="home__section-title">Our Clients</h2>
+                    <p className="home__section-text">Trusted by leading food brands, restaurants, and culinary professionals, Culinaire Studio delivers expert food styling, recipe development, and consulting services that bring your vision to life. Our collaborative approach has earned the trust of industry leaders like Southern Living, Eating Well, and Le Creuset. Whether crafting market-ready recipes, styling food or creating sets for photography, or refining restaurant menus, we work closely with our clients to create beautifully styled and deliciously executed results.</p>
+                    <Button
+                        label={`OUR PORTFOLIO`}
+                        handleClick={() => router.push('/portfolio')}
+                        bgColor={APP_COLORS.TK_ORANGE}
+                        textColor='#fff'
+                        style={{
+                            width: 'fit-content',
+                            marginTop: '2rem',
+                        }} />
+                </div>
+            </section>
+
+            <section className="home__section-small" style={{ filter: contactModal ? 'brightness(.5)' : '', backgroundColor: '#D4967D', color: '#464646' }}>
+                <div className="home__col" style={{ width: '60vw' }}>
+                    <div className="home__reviews">
+                        <h2 className="home__section-title">Overheard in Culinaire Studio</h2>
+                        <img src="/assets/images/quotes.png" alt="quotes" className="home__reviews-quotes" />
+                        <p className="home__reviews-content">"Yei is always my first choice when it comes to food or prop styling for my commercial photo + video shoots. You won't find a harder working stylist in the Charleston area who is not only a joy to work with on set but truly understands the client's vision!"</p>
+                        <p className="home__reviews-author">Miguel Buencamino | Holy City Handcraft</p>
                     </div>
                 </div>
             </section>
-            <section className="home__section" style={{ filter: contactModal ? 'brightness(.5)' : '', backgroundColor: '#283F3B', color: '#F8F6F4' }}>
-                <div className="home__row">
-                    <div className="home__col" style={{ width: '40%' }}>
-                        <img src="https://media.licdn.com/dms/image/v2/D4D03AQGwhCYB3cptyQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1727985334259?e=1734566400&v=beta&t=UDkGw4s8QEAyTsaY7ZzPfKzmA8s9KkUNHdxJg4tutq4" alt="Yanet Mariel Gallina" className="home__about-img" draggable={false} />
-                    </div>
-                    <div className="home__col">
-                        <h2 className="home__section-title">Meet Chef Yanet Mariel Gallina</h2>
-                        <p className="home__section-text">With years of experience in the culinary world and a passion for digital marketing, Chef Yanet has helped numerous brands stand out in the gastronomic industry. Discover her journey and how she can bring her expertise to your project. </p>
+
+            <section className="home__section-small" style={{ filter: contactModal ? 'brightness(.5)' : '', backgroundColor: '#E5E3DC', height: 'fit-content', padding: '2rem 0' }}>
+                <h2 className="home__section-title">Food Styling & Recipe Development Blog</h2>
+                <div className="home__servicecard-list" style={{ margin: '2rem 0' }}>
+                    <div className="home__servicecard-container" style={{ width: '18%', height: 'auto' }}>
+                        <div className="home__servicecard-image-wrapper">
+                            <img src="https://images.squarespace-cdn.com/content/v1/5b85f3ecb10598d2bca44d0c/574b0caf-9bf0-4798-a4e8-18d8fe2e5551/Rice+Cooker%2C+Chicken+Soup%2C+Turkey+Rice-12.jpg" alt="" className="home__servicecard-image" />
+                        </div>
+                        <p className="home__servicecard-title">Turkey Rice with Spring Vegetables</p>
                         <Button
-                            label={`Learn More About Yanet`}
-                            handleClick={() => router.push('/about')}
-                            bgColor="#283F3B"
-                            textColor="#F8F6F4"
+                            label='SEE RECIPE'
+                            handleClick={() => router.push('/')}
+                            bgColor='#E5E3DC'
+                            textColor={APP_COLORS.TK_ORANGE}
                             outline
                             style={{
                                 width: 'fit-content',
-                                marginTop: '4rem',
-                                transform: 'scale(1.5)',
-                            }} />
+                                margin: '.5rem auto 0 auto'
+                            }}
+                        />
+                    </div>
+                    <div className="home__servicecard-container" style={{ width: '18%', height: 'auto' }}>
+                        <div className="home__servicecard-image-wrapper">
+                            <img src="https://images.squarespace-cdn.com/content/v1/5b85f3ecb10598d2bca44d0c/1732210262025-SQY2U1JR2VYYKZMZ3Z5K/Dinner+Table+2.jpg" alt="" className="home__servicecard-image" />
+                        </div>
+                        <p className="home__servicecard-title">Thanksgiving Recipe Roundup</p>
+                        <Button
+                            label='SEE RECIPE'
+                            handleClick={() => router.push('/')}
+                            bgColor='#E5E3DC'
+                            textColor={APP_COLORS.TK_ORANGE}
+                            outline
+                            style={{
+                                width: 'fit-content',
+                                margin: '.5rem auto 0 auto'
+                            }}
+                        />
+                    </div>
+                    <div className="home__servicecard-container" style={{ width: '18%', height: 'auto' }}>
+                        <div className="home__servicecard-image-wrapper">
+                            <img src="https://images.squarespace-cdn.com/content/v1/5b85f3ecb10598d2bca44d0c/1734373647038-4VPCE5T1VC71ULT6C7JU/Screenshot+2024-12-09+at+2.52.42%E2%80%AFPM.png" alt="" className="home__servicecard-image" />
+                        </div>
+                        <p className="home__servicecard-title">Recipes for Gifting</p>
+                        <Button
+                            label='SEE RECIPE'
+                            handleClick={() => router.push('/')}
+                            bgColor='#E5E3DC'
+                            textColor={APP_COLORS.TK_ORANGE}
+                            outline
+                            style={{
+                                width: 'fit-content',
+                                margin: '.5rem auto 0 auto'
+                            }}
+                        />
+                    </div>
+                    <div className="home__servicecard-container" style={{ width: '18%', height: 'auto' }}>
+                        <div className="home__servicecard-image-wrapper">
+                            <img src="https://images.squarespace-cdn.com/content/v1/5b85f3ecb10598d2bca44d0c/b9c7ada1-87e9-4f5f-958d-43e00f3d7575/SchermersJanJL-0356.jpg" alt="" className="home__servicecard-image" />
+                        </div>
+                        <p className="home__servicecard-title">Olive Oil Cake</p>
+                        <Button
+                            label='SEE RECIPE'
+                            handleClick={() => router.push('/')}
+                            bgColor='#E5E3DC'
+                            textColor={APP_COLORS.TK_ORANGE}
+                            outline
+                            style={{
+                                width: 'fit-content',
+                                margin: '.5rem auto 0 auto'
+                            }}
+                        />
                     </div>
                 </div>
-            </section>
-            <section className="home__section" style={{ filter: contactModal ? 'brightness(.5)' : '', backgroundColor: '#F8F6F4', color: '#283F3B', height: 'fit-content', padding: '5rem 0' }}>
-                <h2 className="home__section-title">A Glimpse of Success</h2>
-                <div className="home__galery">
-                    {galery.map((image, i) => (
-                        <img
-                            className="home__galery-image"
-                            key={i}
-                            src={image}
-                            alt={`Image Galery N${i + 1}`}
-                            draggable={false}
-                            style={{
-                                animationDelay: `${i ? (i / 10 + 1) : 1}`,
-                                filter: hoverImages === -1 || hoverImages === i ? 'grayscale(0)' : 'grayscale(1)'
-                            }}
-                            onMouseEnter={() => setHoverImages(i)}
-                            onMouseLeave={() => setHoverImages(-1)}
-                        />
-                    ))}
-                </div>
-            </section>
-            <section className="home__section" style={{ filter: contactModal ? 'brightness(.5)' : '', backgroundColor: '#053C5E' }}>
-                <p className="home__contact-text">
-                    Whether you're ready to elevate your culinary brand or simply have a question, Chef Yanet is here to help.
-                    <br />Contact us for a consultation, and let's bring your ideas to life.
-                </p>
-                <Button
-                    label={`Get in Touch`}
-                    handleClick={() => setContactModal(true)}
-                    bgColor="#053C5E"
-                    textColor="white"
-                    outline
-                    style={{
-                        width: 'fit-content',
-                        marginTop: '4rem',
-                        transform: 'scale(1.5)',
-                    }} />
             </section>
         </div>
     )

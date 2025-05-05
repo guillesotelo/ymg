@@ -1,28 +1,71 @@
 .footer {
     &__container {
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         align-items: center;
         justify-content: center;
-        height: 50vh;
-        background-color: #283F3B;
+        height: 40vh;
+        background-color: #E5E3DC;
+    }
+
+    &__logo {
+        height: 5rem;
+        opacity: .7;
+        cursor: pointer;
+        transition: .2s;
+
+        &:hover {
+            opacity: 1;
+        }
     }
 
     &__nav {
         display: flex;
+        flex-direction: column;
+        // gap: .5rem;
+    }
+
+    &__col {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        width: 20%;
+
+        &-title {
+            font-size: 2rem;
+            font-weight: bold;
+            margin: 0;
+        }
+    }
+
+    &__row {
+        display: flex;
         flex-direction: row;
-        align-items: flex-start;
-        gap: 2rem;
+        align-items: center;
+        gap: 1rem;
+        margin: 1rem;
+    }
+
+    &__img {
+        height: 1.5rem;
+        opacity: .6;
+        cursor: pointer;
+        transition: .2s;
+
+        &:hover {
+            opacity: 1;
+        }
     }
 
     &__link {
         opacity: .8;
         transition: .3s;
-        color: lightgray !important;
         cursor: pointer;
         text-decoration: none !important;
-        font-size: 1.5rem;
-        
+        font-size: 1.2rem;
+        color: #464646;
+
 
         &:hover {
             opacity: 1;

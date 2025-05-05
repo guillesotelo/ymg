@@ -73,18 +73,19 @@
         &-overlap {
             position: absolute;
             width: 100%;
-            height: 12vh;
-            bottom: 45%;
+            height: 100%;
             z-index: 2;
             display: flex;
             flex-direction: column;
+            justify-content: center;
+            gap: 3rem;
 
             &-caption {
-                font-size: 4rem;
+                font-size: 3.5rem;
                 color: #fff;
-                margin: auto;
+                margin: 0 auto;
                 text-align: center;
-                width: 70%;
+                width: 50%;
             }
         }
     }
@@ -131,6 +132,31 @@
             font-family: "PT Serif", serif;
             font-size: 1.2rem;
             margin: .5rem;
+        }
+    }
+
+    &__reviews {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        justify-content: space-between;
+        margin: 1rem;
+
+        &-quotes {
+            height: 4rem;
+            margin: auto;
+        }
+
+        &-content {
+            font-size: 1.8rem;
+            text-align: center;
+            margin: .5rem 0 .5rem 0;
+        }
+
+        &-author {
+            text-align: center;
+            margin: 0 0 .5rem 0;
         }
     }
 
